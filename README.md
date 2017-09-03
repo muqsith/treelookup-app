@@ -6,11 +6,13 @@ The search [algorithm](https://github.com/muqsith/treelookup-app/blob/master/src
 
 This application requires [Node.js](https://nodejs.org/) v6.11.2 to run.
 
+Clone or download [this](https://github.com/muqsith/treelookup-app) git repository and follow below steps.
+
 ##### Development mode
 
 Install the dependencies and devDependencies and start the server.
 
-Please follow below steps to start in development mode.
+Execute below commands to start in development mode.
 
 ```sh
 $ cd treelookup-app
@@ -22,7 +24,7 @@ $ npm run start
 
 [http-server](https://www.npmjs.com/package/http-server) is used to serve the static files.
 
-Please follow below steps to start in production mode.
+Execute below commands to start in production mode.
 
 ```sh
 $ npm install -g http-server
