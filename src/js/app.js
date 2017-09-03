@@ -2,6 +2,8 @@ import React from 'react';
 
 export default function App(props) {
     return (
-        <h1>Hello, world!</h1>
+        <div className='container'>
+            <h1>Hello World</h1>
+        </div>
     );
 }

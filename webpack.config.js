@@ -25,7 +25,9 @@ let config = {
     output: {
         path: path.resolve(__dirname, 'public'),
         filename: (ENV === 'build') ? 'app.[hash].js' : 'app.js'
-    },
+	},
+	
+	devtool: (ENV === 'build') ? 'false': 'source-map',
 
     module: {
         loaders: [
@@ -34,15 +36,14 @@ let config = {
 				exclude: /(node_modules|public\/)/,
 				loaders: ['babel-loader']
 			},
-            {
-                test: /\.(scss|css)$/,
-                exclude: /(node_modules|public\/)/,
-                use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: [ 'css-loader', 'sass-loader'],
-                    allChunks: true
-                })
-            }
+			{
+				test: /\.css$/,
+				exclude: /(node_modules|public\/)/,
+				use: ExtractTextPlugin.extract({
+				  fallback: "style-loader",
+				  use: ['css-loader']
+				})
+			}
         ]
 	},
 	
@@ -53,11 +54,19 @@ let config = {
                 filename: 'index.html',
                 template: path.resolve(__dirname, 'src', 'index.html')
             }),
-			new ExtractTextPlugin({filename: 'style.[hash].css'}),
-			new CopyWebpackPlugin([{
-				from: path.resolve(__dirname, 'src', 'js', 'lib'),
-				to: path.resolve(__dirname, 'public', 'lib')
-			}])
+			new ExtractTextPlugin({filename: 'style.css',
+				allChunks: true
+			}),
+			new CopyWebpackPlugin([
+				{
+					from: path.resolve(__dirname, 'src', 'js', 'lib'),
+					to: path.resolve(__dirname, 'public', 'lib')
+				},
+				{
+					from: path.resolve(__dirname, 'src', 'images'),
+					to: path.resolve(__dirname, 'public', 'images')
+				}
+			])
     ]
 };
 
