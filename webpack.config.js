@@ -59,7 +59,7 @@ let config = {
 			}),
 			new CopyWebpackPlugin([
 				{
-					from: path.resolve(__dirname, 'src', 'js', 'lib'),
+					from: path.resolve(__dirname, 'src', 'lib'),
 					to: path.resolve(__dirname, 'public', 'lib')
 				},
 				{

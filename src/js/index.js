@@ -1,13 +1,19 @@
+import '../css/style.css';
+
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
-import App from './app.js';
+import App from './views/app.js';
 
-import '../css/style.css';
+import store from './store/store.js';
+import { Provider } from 'react-redux';
+
 
 render(
     <AppContainer>
-        <App/>
+        <Provider store={store}>
+            <App/>
+        </Provider>
     </AppContainer>,
   document.querySelector("#root")
 );
