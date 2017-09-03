@@ -10,6 +10,8 @@ This application requires [Node.js](https://nodejs.org/) v6.11.2 to run.
 
 Install the dependencies and devDependencies and start the server.
 
+Please follow below steps to start in development mode.
+
 ```sh
 $ cd treelookup-app
 $ npm install
@@ -19,6 +21,8 @@ $ npm run start
 ##### Production mode
 
 [http-server](https://www.npmjs.com/package/http-server) is used to serve the static files.
+
+Please follow below steps to start in production mode.
 
 ```sh
 $ npm install -g http-server
