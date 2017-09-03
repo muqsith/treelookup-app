@@ -1,10 +1,10 @@
-import { SEARCH, RECEIVE_PATH, CLEAR,
-        INPROGRESS, INVALID } from '../actions/types';
+import { SEARCH, RECEIVE_PATH, CLEARFIELD,
+       CLEAR, INPROGRESS, INVALID } from '../actions/types';
 
 export default function reducer(state={
     number: '',
     path: '',
-    status: INVALID
+    status: CLEAR
 }, action) {
     switch (action.type) {
         case SEARCH:
@@ -18,7 +18,7 @@ export default function reducer(state={
             status: action.status,
             path: action.path
         });
-        case CLEAR:
+        case CLEARFIELD:
         return Object.assign({}, state, {
             number: action.number,
             status: action.status,

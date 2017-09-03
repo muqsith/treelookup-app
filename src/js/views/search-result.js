@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { INVALID, INPROGRESS, FOUND, NOTFOUND } from '../actions/types'
+import { INVALID, INPROGRESS, CLEAR, FOUND, NOTFOUND } from '../actions/types'
 
 class SearchResultView extends Component {
     constructor(props) {
@@ -17,11 +17,14 @@ class SearchResultView extends Component {
                         <img src='images/SpinnerBig.gif' />
                     </div>
                 }
-                {this.props.status === INVALID &&
+                {this.props.status === CLEAR &&
                     <div className='placeholder'>Result</div>
                 }
                 {this.props.status === FOUND &&
                     <div className='result found'>Path: {this.props.path}</div>
+                }
+                {this.props.status === INVALID &&
+                    <div className='result notfound'>Please provide a valid number</div>
                 }
                 {this.props.status === NOTFOUND &&
                     <div className='result notfound'>Number not found</div>

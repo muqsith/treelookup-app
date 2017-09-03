@@ -1,5 +1,5 @@
-import { SEARCH, RECEIVE_PATH, CLEAR,
-        INVALID, INPROGRESS, FOUND, NOTFOUND} from './types';
+import { SEARCH, RECEIVE_PATH, CLEARFIELD,
+    CLEAR, INVALID, INPROGRESS, FOUND, NOTFOUND} from './types';
 
 export function search(number) {
     return ({
@@ -19,18 +19,27 @@ export function receivePath(number, path) {
 };
 
 export function searchNumberAsync(number) {
-    return function(dispatch, getState) {
-        dispatch(search(number));
-        treesearch.breadthfirst_callback(number, (result) => {
-            dispatch(receivePath(number, result));
+    if (isNaN(number)) {
+        return ({
+            type: SEARCH,
+            status: INVALID,
+            number,
+            path:''
         });
+    } else {
+        return function(dispatch, getState) {
+            dispatch(search(number));
+            treesearch.breadthfirst_callback(number, (result) => {
+                dispatch(receivePath(number, result));
+            });
+        }
     }
 };
 
 export function clear() {
     return ({
-        type: CLEAR,
-        status: INVALID,
+        type: CLEARFIELD,
+        status: CLEAR,
         number:'',
         path:''
     });

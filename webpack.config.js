@@ -65,8 +65,12 @@ let config = {
 					to: path.resolve(__dirname, 'public', 'lib')
 				},
 				{
-					from: path.resolve(__dirname, 'src', 'images'),
-					to: path.resolve(__dirname, 'public', 'images')
+					from: path.resolve(__dirname, 'src', 'images', 'SpinnerBig.gif'),
+					to: path.resolve(__dirname, 'public', 'images', 'SpinnerBig.gif')
+				},
+				{
+					from: path.resolve(__dirname, 'src', 'images', 'favicon.ico'),
+					to: path.resolve(__dirname, 'public')
 				}
 			]),
 			new webpack.DefinePlugin({
