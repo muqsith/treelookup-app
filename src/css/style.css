@@ -99,5 +99,41 @@ button:active {
 
 .result-area {
     order:2;
+    width: 100%;
+    height: 300px;
     display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.placeholder {
+    font-size: 30px;
+    font-weight: bold;
+    font-style: italic;
+    color: lightgray;
+}
+
+.result {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    padding: 10px;
+    border: 2px solid;
+    border-radius: 8px;
+    width: 80%;
+}
+
+.notfound {
+    border-color: salmon;
+    color: salmon;
+    background-color: #fff;
+}
+
+.found {
+    border-color: green;
+    color: green;
+    background-color: #fff;
 }

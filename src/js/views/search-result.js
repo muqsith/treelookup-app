@@ -2,6 +2,8 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+import { INVALID, INPROGRESS, FOUND, NOTFOUND } from '../actions/types'
+
 class SearchResultView extends Component {
     constructor(props) {
         super(props);
@@ -10,7 +12,20 @@ class SearchResultView extends Component {
     render() {
         return (
             <div className='result-area'>
-                <h4>{(this.props.path)?this.props.path : 'Path not found'}</h4>
+                {this.props.status === INPROGRESS &&
+                    <div className='spinner'>
+                        <img src='images/SpinnerBig.gif' />
+                    </div>
+                }
+                {this.props.status === INVALID &&
+                    <div className='placeholder'>Result</div>
+                }
+                {this.props.status === FOUND &&
+                    <div className='result found'>Path: {this.props.path}</div>
+                }
+                {this.props.status === NOTFOUND &&
+                    <div className='result notfound'>Number not found</div>
+                }
             </div>
         );
     }

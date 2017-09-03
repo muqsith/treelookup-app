@@ -1,4 +1,5 @@
-import { SEARCH, RECEIVE_PATH, INPROGRESS, INVALID } from '../actions/types';
+import { SEARCH, RECEIVE_PATH, CLEAR,
+        INPROGRESS, INVALID } from '../actions/types';
 
 export default function reducer(state={
     number: '',
@@ -12,6 +13,12 @@ export default function reducer(state={
                 status: action.status
             });
         case RECEIVE_PATH:
+        return Object.assign({}, state, {
+            number: action.number,
+            status: action.status,
+            path: action.path
+        });
+        case CLEAR:
         return Object.assign({}, state, {
             number: action.number,
             status: action.status,

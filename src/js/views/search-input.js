@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import { searchNumberAsync } from '../actions/search-action';
+import { searchNumberAsync, clear } from '../actions/search-action';
 
 class SearchInputView extends Component {
     constructor(props) {
@@ -19,13 +19,17 @@ class SearchInputView extends Component {
     }
 
     handleKeyUp(event) {
-        if (event.keyCode === 13) {
+        if (event.keyCode === 13 && this.state.value) {
             this.props.searchNumber(this.state.value);
+        } else if (event.keyCode === 8 && !this.state.value) {
+            this.props.clear();
         }
     }
 
     handleClick(event) {
-        this.props.searchNumber(this.state.value);
+        if (this.state.value) {
+            this.props.searchNumber(this.state.value);
+        }
     }
 
     render() {
@@ -53,6 +57,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         searchNumber: (number) => {
             dispatch(searchNumberAsync(number));
+        },
+        clear: () => {
+            dispatch(clear());
         }
     }
 };

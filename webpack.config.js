@@ -66,18 +66,19 @@ let config = {
 					from: path.resolve(__dirname, 'src', 'images'),
 					to: path.resolve(__dirname, 'public', 'images')
 				}
-			])
+			]),
+			new webpack.DefinePlugin({
+				"process.env": { 
+					NODE_ENV: (ENV === 'build') ? JSON.stringify("production") : 
+					JSON.stringify("dev")
+				}
+			})
     ]
 };
 
 if (ENV === 'build') {
 	config.plugins = config.plugins.concat([
-		new webpack.optimize.UglifyJsPlugin(),
-		new webpack.DefinePlugin({
-			"process.env": { 
-			   NODE_ENV: JSON.stringify("production") 
-			 }
-		  })
+		new webpack.optimize.UglifyJsPlugin()
 	]);
 }
 

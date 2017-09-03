@@ -4,7 +4,13 @@ import thunkMiddleware from 'redux-thunk';
 
 import reducers from '../reducers/reducers.js';
 
-const loggerMiddleware = createLogger();
+
+let middlewares = [thunkMiddleware];
+
+if (process.env['NODE_ENV'] === 'dev') {
+  const loggerMiddleware = createLogger();
+  middlewares = middlewares.concat(loggerMiddleware);
+}
 
 /**
  * store shape:
@@ -17,10 +23,7 @@ const loggerMiddleware = createLogger();
 
 let store = createStore(
     reducers,
-    applyMiddleware(
-      thunkMiddleware,
-      loggerMiddleware
-    )
+    applyMiddleware(...middlewares)
   );
   
   export default store;

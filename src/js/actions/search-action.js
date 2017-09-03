@@ -1,4 +1,5 @@
-import { SEARCH, RECEIVE_PATH, INPROGRESS, FOUND,  NOTFOUND} from './types';
+import { SEARCH, RECEIVE_PATH, CLEAR,
+        INVALID, INPROGRESS, FOUND, NOTFOUND} from './types';
 
 export function search(number) {
     return ({
@@ -24,4 +25,13 @@ export function searchNumberAsync(number) {
             dispatch(receivePath(number, result));
         });
     }
+};
+
+export function clear() {
+    return ({
+        type: CLEAR,
+        status: INVALID,
+        number:'',
+        path:''
+    });
 };
