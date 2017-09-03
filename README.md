@@ -20,6 +20,8 @@ $ npm install
 $ npm run start
 ```
 
+Access the application locally at [http://localhost:8888](http://localhost:8888)
+
 ##### Production mode
 
 [http-server](https://www.npmjs.com/package/http-server) is used to serve the static files.
@@ -31,4 +33,4 @@ $ npm install -g http-server
 $ npm install
 $ npm run prod
 ```
-
+Access the application locally at [http://localhost:8080](http://localhost:8080)
