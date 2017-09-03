@@ -14,20 +14,22 @@ const ENV = process.env.npm_lifecycle_event,
 ;
 
 let config = {
-    entry: (ENV === 'build') ? [
-		// production mode
-		path.resolve(__dirname, 'src', 'js', 'index.js')
-	]:[
+	entry: (ENV === 'start') ? 
+	[
 		// dev mode
 		'react-hot-loader/patch',
+		path.resolve(__dirname, 'src', 'js', 'index.js')
+	]:
+	[
+		// production mode
 		path.resolve(__dirname, 'src', 'js', 'index.js')
 	],
     output: {
         path: path.resolve(__dirname, 'public'),
-        filename: (ENV === 'build') ? 'app.[hash].js' : 'app.js'
+        filename: (ENV === 'start') ? 'app.js' : 'app.[hash].js'
 	},
 	
-	devtool: (ENV === 'build') ? 'false': 'source-map',
+	devtool: (ENV === 'start') ? 'source-map' : 'false',
 
     module: {
         loaders: [
@@ -69,14 +71,14 @@ let config = {
 			]),
 			new webpack.DefinePlugin({
 				"process.env": { 
-					NODE_ENV: (ENV === 'build') ? JSON.stringify("production") : 
-					JSON.stringify("dev")
+					NODE_ENV: (ENV === 'start') ? JSON.stringify("dev") : 
+					JSON.stringify("production")
 				}
 			})
     ]
 };
 
-if (ENV === 'build') {
+if (ENV !== 'start') {
 	config.plugins = config.plugins.concat([
 		new webpack.optimize.UglifyJsPlugin()
 	]);

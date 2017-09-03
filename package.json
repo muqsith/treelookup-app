@@ -6,6 +6,7 @@
   "scripts": {
     "build": "rimraf public & webpack --progress --profile --colors",
     "start": "rimraf public & webpack-dev-server --hot --inline --progress --profile --colors",
+    "prod": "rimraf public & webpack --progress --profile --colors & http-server public/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "muqsiht",
